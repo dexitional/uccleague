@@ -9,6 +9,8 @@ import FixturePill from '@/components/FixturePill'
 import TeamPill from '@/components/TeamPill'
 const { NEXT_PUBLIC_APPWRITE_DATABASE_ID } = process.env;
 
+export const revalidate = 0;
+
 const getData = async () => {
   let fixture = await database.listDocuments(NEXT_PUBLIC_APPWRITE_DATABASE_ID!,"fixture",[]);
   let teams = await database.listDocuments(NEXT_PUBLIC_APPWRITE_DATABASE_ID!,"team",[]);
