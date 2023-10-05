@@ -53,7 +53,7 @@ export default async function Home() {
             <h1 className="text-sm font-semibold">MEMBER TEAMS</h1>
             <nav className="space-y-3">
               {data[1]?.documents?.map((row:any) => (
-                 <TeamPill row={row} />
+                 <TeamPill key={row.$id} row={row} />
               ))}
             </nav>
           </div>
@@ -66,7 +66,7 @@ export default async function Home() {
              
               <div className="w-full space-y-1">
                 { data[0]?.documents?.map((row:any) => (
-                 <FixturePill row={row} />
+                 <FixturePill key={row.$id} row={row} />
                 ))}
               </div>
               
@@ -79,7 +79,7 @@ export default async function Home() {
              </div>
              <div className="space-y-3">
                 { data?.map((row:any) => (
-                 <GroupPill title="Group A" data={null} />
+                 <GroupPill key={row.$id} title="Group A" data={null} />
                 ))}
              </div>
           </div>
