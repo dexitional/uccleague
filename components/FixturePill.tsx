@@ -18,7 +18,7 @@ function FixturePill({ row }: Props) {
 
 
   return (
-    <div key={row.$id} className="p-4 w-full rounded border bg-slate-100 flex items-center justify-center">
+    <div className="p-4 w-full rounded border bg-slate-100 flex items-center justify-center">
         <div className="flex-2 flex items-center space-x-7 text-xs">
         <BiFootball className="h-6 w-6" />
         <span className="font-medium italic">

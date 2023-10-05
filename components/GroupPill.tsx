@@ -7,7 +7,7 @@ type Props = {
 
 function GroupPill({ title, data }: Props) {
   return (
-    <div className="p-4 bg-white/70 space-y-3 rounded-lg shadow">
+ <div className="p-4 bg-white/70 space-y-3 rounded-lg shadow">
     <h1 className="font-bold text-sm text-red-800">{title}</h1>
     <div className="p-2 w-full rounded-lg bg-white text-xs space-y-2">
       <div className="">
