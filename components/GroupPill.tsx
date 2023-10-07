@@ -19,12 +19,12 @@ function GroupPill({ title, data }: Props) {
         </div>
       </div>
       <div className="font-medium">
-        { data?.map((row:any) => (
+        { data?.map((row:any, i:any) => (
         <div key={row.$id} className="p-1 grid grid-cols-7">
-          <div className="col-span-1">1</div>
-          <div className="col-span-4 font-bold">CANS</div>
-          <div className="col-span-1">-1</div>
-          <div className="col-span-1 font-black">12</div>
+          <div className="col-span-1">{i+1}</div>
+          <div className="col-span-4 font-semibold">{row.team}</div>
+          <div className="col-span-1">{row.goalDifference}</div>
+          <div className="col-span-1 font-black">{row.points}</div>
         </div>
        ))}
       </div>
