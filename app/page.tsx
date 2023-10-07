@@ -15,7 +15,7 @@ export const revalidate = 0;
 const getData:any = async (stageId = null) => {
   let stages = await database.listDocuments(NEXT_PUBLIC_APPWRITE_DATABASE_ID!,"stage",[]); // Onclick on Stage Load Knockout Data but by Default Current Stage Knockout Data
   let teams = await database.listDocuments(NEXT_PUBLIC_APPWRITE_DATABASE_ID!,"team",[]);
-  let tables = await database.listDocuments(NEXT_PUBLIC_APPWRITE_DATABASE_ID!,"table",[ Query.orderDesc("points")]);
+  let tables = await database.listDocuments(NEXT_PUBLIC_APPWRITE_DATABASE_ID!,"table",[]);
   
   // Current Stage where Default is true
   let stage:any = stageId 
@@ -131,7 +131,7 @@ export default async function Home({ searchParams }: { searchParams: { stage: st
              </div>
              <div className="space-y-3">
                 { tables?.map(([key,data]:any) => (
-                 <GroupPill key={key} title={key} data={data} />
+                 <GroupPill key={key} title={key} data={data.sort((a:any,b:any) => b.points - a.points)} />
                 ))}
              </div>
           </div>
