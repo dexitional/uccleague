@@ -15,7 +15,7 @@ export const revalidate = 0;
 const getData:any = async (stageId = null) => {
   let stages = await database.listDocuments(NEXT_PUBLIC_APPWRITE_DATABASE_ID!,"stage",[]); // Onclick on Stage Load Knockout Data but by Default Current Stage Knockout Data
   let teams = await database.listDocuments(NEXT_PUBLIC_APPWRITE_DATABASE_ID!,"team",[]);
-  let tables = await database.listDocuments(NEXT_PUBLIC_APPWRITE_DATABASE_ID!,"table",[]);
+  let tables = await database.listDocuments(NEXT_PUBLIC_APPWRITE_DATABASE_ID!,"table",[ Query.orderDesc("points")]);
   
   // Current Stage where Default is true
   let stage:any = stageId 
