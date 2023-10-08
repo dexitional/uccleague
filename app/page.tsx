@@ -27,7 +27,7 @@ export default async function Home({ searchParams }: { searchParams: { stage: st
     <div className="w-full space-y-10">
         <div className="p-2 md:p-4 rounded-r-md bg-gray-50/50 border-l-8 border-blue-950 shadow-md">
           <h1 className="w-full flex items-center justify-between font-bold text-[0.65rem] md:text-sm tracking-widest">
-            <span>MEN'S FOOTBALL - FIXTURES</span>
+            <span>MEN FOOTBALL - FIXTURES</span>
             <span className="py-0.5 px-2 rounded-sm bg-blue-950 text-xs text-white uppercase">{data[1].documents[0].name}</span>
           </h1>
         </div>
