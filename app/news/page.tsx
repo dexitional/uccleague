@@ -6,6 +6,8 @@ import { sanityClient, urlFor } from '@/sanity'
 import { toPlainText } from '@portabletext/react'
 import moment from 'moment'
 
+export const revalidate = 3000;
+
 const getData = async () => {
   const query = `*[_type == "post"] | order(_createdAt desc) {_id,title,author->{name,image},categories[]->{title},mainImage,slug,_createdAt,body[]{ ..., asset->{ ..., "_key": _id } }} [0...4]`
 //   const query = `*[_type == "post" && "publication" in categories[]->slug.current] | order(_createdAt desc) {_id,title,author->{name,image},categories[]->{title},mainImage,slug,_createdAt,body[]{ ..., asset->{ ..., "_key": _id } }} [0...4]`
@@ -23,7 +25,7 @@ async function News() {
         <div className="p-2 md:p-4 rounded-r-md bg-gray-50/50 border-l-8 border-blue-950 shadow-md">
         <h1 className="w-full flex items-center justify-between font-bold text-[0.65rem] md:text-sm tracking-widest">
             <span>LEAGUE NEWS</span>
-            <span className="py-0.5 px-2 rounded-sm bg-blue-950 text-white">TOP</span>
+            <span className="py-0.5 px-2 rounded-sm bg-blue-950 text-white">NEWS</span>
         </h1>
         </div>
         
@@ -37,7 +39,7 @@ async function News() {
                     <h1 className="text-md font-bold text-gray-600">{row.title}</h1>
                     <p className="text-gray-600 text-sm leading-relaxed">{toPlainText(row.body)?.split('.')[0]+' ...'}</p>
                     <div className="px-2 py-3 flex flex-col items-center justify-between space-y-1 text-sm text-gray-400 font-medium bg-slate-100 rounded-xl">
-                        <span>Published: {moment(row._createdAt).format('LL')}</span>
+                        <span>Published: {moment(row.publishedAt).format('LL')}</span>
                         <span>By: {row.author?.name}</span>
                     </div>
                 </article>
