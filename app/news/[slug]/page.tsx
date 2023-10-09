@@ -9,7 +9,7 @@ function News() {
         <div className="p-2 md:p-4 rounded-r-md bg-gray-50/50 border-l-8 border-blue-950 shadow-md">
         <h1 className="w-full flex items-center justify-between font-bold text-[0.65rem] md:text-sm tracking-widest">
             <span>LEAGUE NEWS</span>
-            <span className="py-0.5 px-2 rounded-sm bg-blue-950 text-white">TOP</span>
+            <Link href="/news" className="py-0.5 px-2 rounded-md bg-blue-950 text-white">TOP</Link>
         </h1>
         </div>
         

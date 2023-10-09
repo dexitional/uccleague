@@ -20,10 +20,10 @@ async function Team({ params }: { params: { slug: string }}) {
 
   const data:any = await getData(params?.slug)
   const team = data[0].documents;
-  const coaches = [
-    { name: team.coachName, staffNo: team.coachStaffNo, role:'Head Coach', contact: team.coachContact },
-    { name: team.assCoachName, staffNo: team.assCoachStaffNo, role:'Assistant Coach', contact: team.coachContact }
-  ]
+//   const coaches = [
+//     { name: team.coachName, staffNo: team.coachStaffNo, role:'Head Coach', contact: team.coachContact },
+//     { name: team.assCoachName, staffNo: team.assCoachStaffNo, role:'Assistant Coach', contact: team.coachContact }
+//   ]
 
   return (
     <div className="w-full max-w-xl space-y-2">

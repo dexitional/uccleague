@@ -9,13 +9,19 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@portabletext/react": "^3.0.9",
+    "@sanity/image-url": "1",
+    "@sanity/vision": "3",
     "appwrite": "^13.0.0",
     "moment": "^2.29.4",
     "next": "13.5.4",
+    "next-sanity": "^5.5.5",
     "node-appwrite": "^11.0.0",
     "react": "^18",
     "react-dom": "^18",
-    "react-icons": "^4.11.0"
+    "react-icons": "^4.11.0",
+    "sanity": "3",
+    "styled-components": "5.2"
   },
   "devDependencies": {
     "@types/node": "^20",

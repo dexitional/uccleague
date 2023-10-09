@@ -1,15 +1,10 @@
 import './globals.css'
 import type { Metadata } from 'next'
-import { BiFootball,BiGroup,BiNews } from 'react-icons/bi'
-import { FaFootball,FaTeamspeak } from 'react-icons/fa6'
+import { BiNews } from 'react-icons/bi'
 import { MdOutlineScoreboard } from 'react-icons/md'
-import { GiBorderedShield,GiRosaShield } from 'react-icons/gi'
 import { Query, database } from '@/appwrite'
-import moment from 'moment'
 import GroupPill from '@/components/GroupPill'
-import FixturePill from '@/components/FixturePill'
 import TeamPill from '@/components/TeamPill'
-import { redirect } from 'next/navigation'
 import { Inter } from 'next/font/google'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -24,7 +19,7 @@ export const metadata: Metadata = {
   description: 'Developed By Blay Technologies',
 }
 
-export const revalidate = 0;
+export const revalidate = 60;
 
 const getData:any = async (stageId = null) => {
   let teams = await database.listDocuments(NEXT_PUBLIC_APPWRITE_DATABASE_ID!,"team",[]);
@@ -143,7 +138,7 @@ export default async function RootLayout({
                       <TeamPill key={row.$id} row={row} />
                     ))}
                   </nav>
-                  
+
                  {/* LEAGE STAGES */}
                   <div className="w-full py-1"></div>
                   <h1 className="text-xs md:text-sm font-semibold">LEAGUE STAGES</h1>

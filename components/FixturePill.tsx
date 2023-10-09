@@ -27,7 +27,7 @@ function FixturePill({ row }: Props) {
             <div className="text-[0.6rem] font-bold text-slate-500 uppercase tracking-wider">{group}</div>
         </div>
 
-        <div className="flex-1 md:flex-1 flex md:items-center justify-start md:justify-between space-x-7 text-xs">
+        <div className="w-full md:flex-1 flex md:items-center justify-start md:justify-between space-x-7 text-xs">
             <div className="hidden md:flex"><BiFootball className="h-6 w-6 " /></div>
             <div className="w-16 font-medium italic">
                 <span>{kicktime}</span><br/><span className="font-bold text-[0.75em] not-italic uppercase">{kickdate}</span>
