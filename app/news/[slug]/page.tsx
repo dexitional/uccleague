@@ -7,7 +7,7 @@ import moment from 'moment'
 import { PortableText } from '@portabletext/react'
 import { RichTextComponents } from '@/components/RichTextComponents'
 
-export const revalidate = 360;
+//export const revalidate = 360;
 
 const getData = async (slug: string) => {
   const query = `*[_type == "post" && slug.current == $slug] | order(_createdAt desc) {_id,title,author->{name,image},categories[]->{title},mainImage,slug,_createdAt,publishedAt,body[]{ ..., asset->{ ..., "_key": _id } }}[0]`
@@ -39,7 +39,8 @@ async function News({ params }: { params: { slug: string }}) {
                 </div>
                 <h1 className="text-2xl font-bold text-gray-600">{row?.title}</h1>
                 <article className="">
-                  <PortableText value={row?.body} components={RichTextComponents} /> 
+                  {/* <PortableText value={row?.body} components={RichTextComponents} />  */}
+                  <PortableText value={row?.body} /> 
                 </article>
                 <div className="py-4 flex items-center justify-between text-sm text-gray-600">
                   <span>Released: {moment(row.publishedAt).format('LL')}</span>
