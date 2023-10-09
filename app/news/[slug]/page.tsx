@@ -5,11 +5,12 @@ import Link from 'next/link'
 import { sanityClient, urlFor } from '@/sanity'
 import moment from 'moment'
 import { PortableText } from '@portabletext/react'
+import { RichTextComponents } from '@/components/RichTextComponents'
 
 export const revalidate = 360;
 
 const getData = async (slug: string) => {
-  const query = `*[_type == "post" && slug.current == $slug] | order(_createdAt desc) {_id,title,author->{name,image},categories[]->{title},mainImage,slug,_createdAt,publishedAt,body[]{ ..., asset->{ ..., "_key": _id } }}`
+  const query = `*[_type == "post" && slug.current == $slug] | order(_createdAt desc) {_id,title,author->{name,image},categories[]->{title},mainImage,slug,_createdAt,publishedAt,body[]{ ..., asset->{ ..., "_key": _id } }}[0]`
 //   const query = `*[_type == "post" && "publication" in categories[]->slug.current] | order(_createdAt desc) {_id,title,author->{name,image},categories[]->{title},mainImage,slug,_createdAt,body[]{ ..., asset->{ ..., "_key": _id } }} [0...4]`
   const data = await sanityClient.fetch(query,{ slug })
   return data;
@@ -31,14 +32,14 @@ async function News({ params }: { params: { slug: string }}) {
         </div>
         
         <div className="w-full grid grid-cols-1 gap-8 overflow-y-auto">
-           <main className="px-8 py-10 rounded-lg shadow-xl ">
+           <main className="px-2 py-10 rounded-lg shadow-xl ">
               <article className="space-y-3">
                 <div className="p-3 relative aspect-video rounded bg-slate-100">
-                    <Image src={row?.mainImage && urlFor(row?.mainImage).url()} alt="Article Image" className="h-48 w-full" fill />
+                    <Image src={row?.mainImage && urlFor(row?.mainImage).url()} alt={row.title} className="h-48 w-full object-cover rounded-md" fill />
                 </div>
                 <h1 className="text-2xl font-bold text-gray-600">{row?.title}</h1>
                 <article className="">
-                  <PortableText value={row?.body} /> 
+                  <PortableText value={row?.body} components={RichTextComponents} /> 
                 </article>
                 <div className="py-4 flex items-center justify-between text-sm text-gray-600">
                   <span>Released: {moment(row.publishedAt).format('LL')}</span>
