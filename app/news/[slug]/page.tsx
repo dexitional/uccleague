@@ -6,7 +6,7 @@ import { sanityClient, urlFor } from '@/sanity'
 import moment from 'moment'
 import { PortableText } from '@portabletext/react'
 
-//export const revalidate = 3000;
+export const revalidate = 360;
 
 const getData = async (slug: string) => {
   const query = `*[_type == "post" && slug.current == $slug] | order(_createdAt desc) {_id,title,author->{name,image},categories[]->{title},mainImage,slug,_createdAt,publishedAt,body[]{ ..., asset->{ ..., "_key": _id } }}`
