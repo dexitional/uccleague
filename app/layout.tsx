@@ -10,6 +10,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import Logo from '@/public/eagle.png'
 import OfficialPill from '@/components/OfficialPill'
+import StagePill from '@/components/StagePill'
 const { NEXT_PUBLIC_APPWRITE_DATABASE_ID } = process.env;
 
 
@@ -145,7 +146,7 @@ export default async function RootLayout({
                   <h1 className="text-xs md:text-sm font-semibold">LEAGUE STAGES</h1>
                   <nav className="space-y-3">
                     {data[3]?.documents?.sort((a:any, b:any) => a.order-b.order).map((row:any) => (
-                      <TeamPill key={row.$id} row={row} />
+                      <StagePill key={row.$id} row={row} />
                     ))}
                   </nav>
                   
