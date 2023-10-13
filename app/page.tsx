@@ -2,7 +2,7 @@ import { Query, database } from '@/appwrite'
 import FixturePill from '@/components/FixturePill'
 const { NEXT_PUBLIC_APPWRITE_DATABASE_ID } = process.env;
 
-export const revalidate = 60;
+export const revalidate = 360;
 
 const getData:any = async (stageId = null) => {
   // Current Stage where Default is true
@@ -11,7 +11,9 @@ const getData:any = async (stageId = null) => {
       : await database.listDocuments(NEXT_PUBLIC_APPWRITE_DATABASE_ID!,"stage",[ Query.equal("default", true) ]); // Load Default Knockout Stage
       
   // Fetch Fixtures for Current Stage
-  let fixture = await database.listDocuments(NEXT_PUBLIC_APPWRITE_DATABASE_ID!,"fixture",[ Query.equal("stage", stage.documents[0].$id) ]);
+  let fixture;
+  if(stage?.total)
+   fixture = await database.listDocuments(NEXT_PUBLIC_APPWRITE_DATABASE_ID!,"fixture",[ Query.equal("stage", stage.documents[0].$id) ]);
   
   const data = await Promise.all([fixture,stage])
   return data;
@@ -21,7 +23,6 @@ export default async function Home({ searchParams }: { searchParams: { stage: st
   
   const stageId = searchParams?.stage;
   const data: any = await getData(stageId);
-  console.log(data[1]);
   
   return (
     <div className="w-full space-y-10">
