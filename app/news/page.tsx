@@ -6,7 +6,7 @@ import { sanityClient, urlFor } from '@/sanity'
 import { toPlainText } from '@portabletext/react'
 import moment from 'moment'
 
-//export const revalidate = 360;
+export const revalidate = 360;
 
 const getData = async () => {
   const query = `*[_type == "post"] | order(_createdAt desc) {_id,title,author->{name,image},categories[]->{title},mainImage,slug,_createdAt,body[]{ ..., asset->{ ..., "_key": _id } }} [0...4]`
@@ -31,16 +31,16 @@ async function News() {
         
         <div className="px-4 py-6 w-full grid grid-cols-1 md:grid-cols-2 gap-2 rounded-lg shadow-xl overflow-y-auto">
             { news.map((row: any) => (
-            <Link key={row._id} href={`/news/${row.slug?.current}`} className="px-3 py-4 rounded-lg shadow-xl ">
+            <Link key={row._id} href={`/news/${row?.slug?.current}`} className="px-3 py-4 rounded-lg shadow-xl ">
                 <article className="space-y-3">
                     <div className="p-3 relative aspect-video rounded bg-slate-100">
-                      <Image src={row.mainImage && urlFor(row.mainImage).url() || Logo} alt="Article Image" className="h-20 w-full object-cover rounded" fill />
+                      <Image src={row?.mainImage && urlFor(row?.mainImage).url() || Logo} alt="Article Image" className="h-20 w-full object-cover rounded" fill />
                     </div>
-                    <h1 className="text-md font-bold text-gray-600">{row.title}</h1>
-                    <p className="text-gray-600 text-sm leading-relaxed">{toPlainText(row.body)?.split('.')[0]+' ...'}</p>
-                    <div className="px-2 py-3 flex flex-col items-center justify-between space-y-1 text-sm text-gray-400 font-medium bg-slate-100 rounded-xl">
-                        <span>Published: {moment(row.publishedAt).format('LL')}</span>
-                        <span>By: {row.author?.name}</span>
+                    <h1 className="text-md font-bold text-gray-600">{row?.title}</h1>
+                    <p className="text-gray-600 text-sm leading-relaxed">{ toPlainText(row?.body)?.split('.')[0]+' ...' }</p>
+                    <div className="px-4 py-3 flex flex-col space-y-1 text-sm text-gray-400 font-medium bg-slate-100 rounded-xl">
+                        <span>Published: {moment(row?.publishedAt).format('MMM DD, YYYY')}</span>
+                        <span>By: {row?.author?.name}</span>
                     </div>
                 </article>
             </Link>

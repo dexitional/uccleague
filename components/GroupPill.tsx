@@ -15,17 +15,17 @@ function GroupPill({ title, data }: Props) {
           <div className="col-span-1">#</div>
           <div className="col-span-4">TEAM</div>
           <div className="col-span-1">MP</div>
-          <div className="col-span-1">GD</div>
+          <div className="col-span-1 text-center">GD</div>
           <div className="col-span-1">PTS</div>
         </div>
       </div>
       <div className="font-medium">
         { data?.map((row:any, i:any) => (
-        <div key={row.$id} className="p-1 grid grid-cols-8">
-          <div className="col-span-1">{i+1}</div>
+        <div key={row.$id} className={`px-2 py-1 grid grid-cols-8 ${ i == 0 ? 'bg-blue-50': i == 1 ? 'bg-slate-50': ''}`}>
+          <div className={`col-span-1 ${ i == 0 || i == 1 ? 'text-blue-950 font-black' : ''}`}>{i+1}</div>
           <div className="col-span-4 font-bold text-gray-600">{row.team}</div>
           <div className="col-span-1">{row.matches}</div>
-          <div className="col-span-1">{row.goalDifference}</div>
+          <div className="col-span-1 text-center">{row.goalDifference}</div>
           <div className="col-span-1 font-black">{row.points}</div>
         </div>
        ))}
