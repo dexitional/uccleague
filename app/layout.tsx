@@ -9,6 +9,7 @@ import { Inter } from 'next/font/google'
 import Link from 'next/link'
 import Image from 'next/image'
 import Logo from '@/public/eagle.png'
+import OfficialPill from '@/components/OfficialPill'
 const { NEXT_PUBLIC_APPWRITE_DATABASE_ID } = process.env;
 
 
@@ -82,10 +83,10 @@ export default async function RootLayout({
   const tables = formatTableData()
   const knockouts = await formatKnockoutData()
   const officials = [
-    { name: 'ORGANIZING TEAM', link: ''},
-    { name: 'MANAGEMENT TEAM', link: ''},
-    { name: 'MEDICAL TEAM', link: ''},
-    { name: 'MEDIA & PUBLICATION TEAM', link: ''},
+    { name: 'ORGANIZING TEAM', slug: 'organizers'},
+    { name: 'MANAGEMENT TEAM', slug: 'referees'},
+    { name: 'MEDICAL TEAM', slug: 'medics'},
+    { name: 'MEDIA & PUBLICATION TEAM', slug: 'media'},
   ]
 
   return (
@@ -135,7 +136,7 @@ export default async function RootLayout({
                   <h1 className="text-xs md:text-sm font-semibold">ORGANIZATION & OFFICIALS</h1>
                   <nav className="space-y-3">
                     {officials.map((row:any) => (
-                      <TeamPill key={row.$id} row={row} />
+                      <OfficialPill key={row.$id} row={row} />
                     ))}
                   </nav>
 

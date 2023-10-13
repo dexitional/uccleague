@@ -8,6 +8,7 @@ import { PortableText } from '@portabletext/react'
 import { RichTextComponents } from '@/components/RichTextComponents'
 import { Metadata } from 'next'
 import { MdContactPhone } from 'react-icons/md'
+import { BsPhoneFill } from 'react-icons/bs'
 
 export const revalidate = 360;
 
@@ -46,7 +47,7 @@ async function News({ params }: { params: { slug: string }}) {
                        <h1 className="text-[0.85rem] font-semibold">{row.name.toUpperCase()}</h1>
                        <h2 className="px-2 py-0.5 bg-slate-100 text-xs font-medium rounded-r-lg border-l-4 border-blue-950">{row.role.toUpperCase()}</h2>
                        <p className="text-xs font-medium italic flex items-center space-x-2">
-                        <MdContactPhone className="h-4 w-4"/>
+                        <BsPhoneFill className="h-4 w-4"/>
                         <span>{row.contact}</span>
                        </p>
                     </div>
