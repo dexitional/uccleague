@@ -37,7 +37,7 @@ async function News({ params }: { params: { slug: string }}) {
         
         <div className="w-full overflow-y-auto">
            <main className="px-2 py-10 rounded-lg shadow-xl ">
-              <article className="space-y-3 grid grid-cols-2 gap-4">
+              <article className="space-y-3 grid md:grid-cols-2 gap-4">
                  { data?.map((row:any) => (
                  <div key={row._id} className="w-full rounded-lg shadow-lg">
                     <div className="relative h-48 w-full">
