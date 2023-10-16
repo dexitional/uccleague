@@ -93,11 +93,11 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="pb-10 w-full h-full bg-slate-300">
-          <div className="mx-auto w-full h-screen md:max-w-7xl bg-slate-50 md:rounded-b-3xl md:border-x-4 md:border-b-8 border-[#001e28] shadow-lg backdrop-blur-lg overflow-y-auto">
+        <div className="w-full h-full bg-slate-300">
+          <div className="mx-auto w-full h-screen md:max-w-7xl bg-slate-50 md:rounded-b-3xl md:border-x-4 md:border-b-8 border-[#001e28] shadow-lg backdrop-blur-lg overflow-y-auto md:overflow-y-hidden">
             
             {/* Advertisement & Sponsors - #00141e */}
-            <header className="px-6 w-full h-24 bg-[#001e28] flex items-center justify-between space-x-4">
+            <header className="z-10 fixed px-6 w-full h-24 bg-[#001e28] flex items-center justify-between space-x-4">
              
               <div className="flex items-center">
                 <div className="relative md:w-24 md:h-16">
@@ -121,10 +121,10 @@ export default async function RootLayout({
             </header>
 
             {/* Content Page */}
-            <main className="w-full flex flex-col md:flex-row">
+            <main className="pt-24 w-full max-h-[calc(100vh-6rem)] flex flex-col md:flex-row">
 
                 {/* Teams Sidebar */}
-                <div className="order-3 md:order-1 px-4 py-6 w-full md:w-72 h-full md:border-r-2 border-red-100 bg-red-50 space-y-4">
+                <div className="order-3 md:order-1 px-4 py-6 w-full md:w-72 h-[calc(100vh-6rem)] md:border-r-2 border-red-100 bg-red-50 space-y-3 overflow-y-auto">
                   <h1 className="text-xs md:text-sm font-semibold">MEMBER TEAMS</h1>
                   <nav className="space-y-3">
                     {data[1]?.documents?.map((row:any) => (
