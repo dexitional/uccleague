@@ -25,7 +25,7 @@ export default async function Home({ searchParams }: { searchParams: { stage: st
   const data: any = await getData(stageId);
   
   return (
-    <div className="w-full space-y-10">
+    <div className="w-full max-h-[88vh] space-y-10 overflow-y-auto">
         <div className="p-2 md:p-4 rounded-r-md bg-gray-50/50 border-l-8 border-blue-950 shadow-md">
           <h1 className="w-full flex items-center justify-between font-bold text-[0.65rem] md:text-sm tracking-widest">
             <span>MEN FOOTBALL - FIXTURES</span>

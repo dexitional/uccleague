@@ -94,7 +94,7 @@ export default async function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <div className="pb-10 w-full h-full bg-slate-300">
-          <div className="mx-auto w-full md:max-w-7xl bg-slate-50 md:rounded-b-3xl md:border-x-4 md:border-b-8 border-[#001e28] shadow-lg backdrop-blur-lg">
+          <div className="mx-auto w-full h-screen md:max-w-7xl bg-slate-50 md:rounded-b-3xl md:border-x-4 md:border-b-8 border-[#001e28] shadow-lg backdrop-blur-lg overflow-y-auto">
             
             {/* Advertisement & Sponsors - #00141e */}
             <header className="px-6 w-full h-24 bg-[#001e28] flex items-center justify-between space-x-4">
