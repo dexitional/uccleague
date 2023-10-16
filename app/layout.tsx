@@ -121,10 +121,10 @@ export default async function RootLayout({
             </header>
 
             {/* Content Page */}
-            <main className="pt-24 w-full max-h-[calc(100vh-6rem)] flex flex-col md:flex-row">
+            <main className="pt-24 w-full md:max-h-[calc(100vh-6rem)] flex flex-col md:flex-row">
 
                 {/* Teams Sidebar */}
-                <div className="order-3 md:order-1 px-4 py-6 w-full md:w-72 h-[calc(100vh-6rem)] md:border-r-2 border-red-100 bg-red-50 space-y-3 overflow-y-auto">
+                <div className="order-3 md:order-1 px-4 py-6 w-full md:w-72 h-full md:h-[calc(100vh-6rem)] md:border-r-2 border-red-100 bg-red-50 space-y-3 overflow-y-auto">
                   <h1 className="text-xs md:text-sm font-semibold">MEMBER TEAMS</h1>
                   <nav className="space-y-3">
                     {data[1]?.documents?.map((row:any) => (
@@ -162,9 +162,10 @@ export default async function RootLayout({
                       <h1 className="font-bold text-xs md:text-sm tracking-widest">TABLE STANDINGS</h1>
                   </div>
                   <div className="space-y-3">
-                      { tables?.map(([key,data]:any) => (
-                      <GroupPill key={key} title={key} data={data.sort((a:any,b:any) => b.points - a.points)} />
-                      ))}
+                      { tables?.map(([key,data]:any, i:number) => (
+                        <GroupPill index={i} key={key} title={key} data={data.sort((a:any,b:any) => b.points - a.points)} />
+                        ))
+                      }
                   </div>
                 </div>
             </main>

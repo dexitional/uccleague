@@ -17,7 +17,7 @@ function FixturePill({ row,index }: Props) {
           y: 0,
           opacity: 1,
           transition: {
-            delay: index-0.5
+            delay: index-0.9
           }
           
         }

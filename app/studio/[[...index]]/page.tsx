@@ -14,7 +14,7 @@ import config from '../../../sanity.config'
 
 export default function StudioPage() {
   return (
-    <div className="w-full max-w-xl space-y-2">
+    <div className="w-full h-screen max-w-xl space-y-2 overflow-y-auto">
       <NextStudio config={config} />
     </div>
   )
