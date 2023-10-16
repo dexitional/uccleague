@@ -13,8 +13,7 @@ const getData:any = async (stageId = null) => {
   // Fetch Fixtures for Current Stage
   let fixture;
   if(stage?.total)
-   fixture = await database.listDocuments(NEXT_PUBLIC_APPWRITE_DATABASE_ID!,"fixture",[ Query.equal("stage", stage.documents[0].$id) ]);
-  
+   fixture = await database.listDocuments(NEXT_PUBLIC_APPWRITE_DATABASE_ID!,"fixture",[ Query.equal("stage", stage.documents[0].$id), Query.orderDesc("$id") ]);
   const data = await Promise.all([fixture,stage])
   return data;
 }
