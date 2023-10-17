@@ -9,9 +9,9 @@ type Props = {
 
 function StagePill({ row }: Props) {
   return (
-    <div key={row.$id} className="flex items-center space-x-1">
+    <div key={row.$id} className={`${row.default ? 'opacity-100 animate-pulse font-black': row.complete ? 'opacity-100 text-red-900 font-semibold ':'opacity-40 font-semibold ' } flex items-center space-x-1 tracking-wider`}>
         <GrAchievement className="w-5 h-5" />
-        <span className="text-xs font-semibold uppercase">{row.name}</span>
+        <span className="text-xs uppercase">{row.name}</span>
     </div>
   )
 }

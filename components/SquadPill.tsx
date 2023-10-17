@@ -1,4 +1,5 @@
 import moment from 'moment';
+import Image from 'next/image';
 import React from 'react'
 import { BiFootball } from 'react-icons/bi'
 import { GiBorderedShield, GiRosaShield } from 'react-icons/gi'
@@ -18,21 +19,24 @@ function SquadPill({ row }: Props) {
             <div className="text-[0.6rem] font-bold text-slate-500 uppercase tracking-wider">{row.staffNo}</div>
         </div>
 
-        <div className="flex-1 md:flex-1 flex md:items-center justify-start md:justify-between space-x-7 text-xs">
+        <div className="ml-3 md:ml-0 flex-1 md:flex-1 flex md:items-center justify-start md:justify-between space-x-7 text-xs">
             {/* Image */}
             <div className="w-full flex flex-col space-y-1 ">
                 <div className="w-full flex items-center justify-between space-x-7">
-                    <div className="flex items-center space-x-2">
-                        <GiBorderedShield />
-                        <span className="font-semibold">{row.lname}, {row.fname} {row.mname}</span>
+                    <div className="py-0.5 flex items-center space-x-2">
+                        {/* <GiBorderedShield /> */}
+                        <div className="relative h-10 w-10 rounded-full overflow-hidden bg-white border-2">
+                            <Image className="object-contain rounded-md" src={`https://ehub.ucc.edu.gh/api/photos/?tag=${row.staffNo}`} alt={row.firstName} fill />
+                        </div>
+                        <span className="font-semibold text-slate-500">{row.lastName?.toUpperCase()}, {row.firstName?.toUpperCase()}</span>
                     </div>
-                    <div className={`p-2 flex md:hidden font-medium text-gray-600 border-2 border-gray-400`}>{row.kitNo}</div>
+                    <div className={`px-2 py-1 flex md:hidden font-bold bg-white text-sm text-gray-400 border-2 border-gray-400 rounded-lg`}>{row.kitNo}</div>
                 </div>
             </div>
         </div>
-        <div className="hidden md:flex px-1.5 py-0.5 text-[0.6em] text-gray-400 font-semibold uppercase border border-gray-400 rounded-md tracking-wider">{row.role}</div>
-        <div className="w-fit hidden md:flex justify-end text-xs">
-            <div className={`p-2 flex md:hidden font-medium text-gray-600 border-2 border-gray-400`}>{row.kitNo}</div>
+        <div className="hidden md:flex px-1.5 py-0.5 text-[0.6em] bg-white text-gray-400 font-semibold uppercase border border-gray-400 rounded-md tracking-wider">{row.role}</div>
+        <div className="w-fit hidden md:flex justify-end text-base">
+            <div className={`px-2 font-bold bg-white text-gray-400 border-2 border-gray-400 rounded-lg`}>{row.kitNo}</div>
         </div>
     </div>
   )
