@@ -11,6 +11,7 @@ import Image from 'next/image'
 import Logo from '@/public/eagle.png'
 import OfficialPill from '@/components/OfficialPill'
 import StagePill from '@/components/StagePill'
+import Script from 'next/script'
 const { NEXT_PUBLIC_APPWRITE_DATABASE_ID } = process.env;
 
 
@@ -21,7 +22,7 @@ export const metadata: Metadata = {
   description: 'Developed By Blay Technologies',
 }
 
-export const revalidate = 60;
+export const revalidate = 360;
 
 const getData:any = async (stageId = null) => {
   let teams = await database.listDocuments(NEXT_PUBLIC_APPWRITE_DATABASE_ID!,"team",[]);
@@ -33,11 +34,14 @@ const getData:any = async (stageId = null) => {
       ? await database.listDocuments(NEXT_PUBLIC_APPWRITE_DATABASE_ID!,"stage", stageId)  // Load Knockout Stage with StageId
       : await database.listDocuments(NEXT_PUBLIC_APPWRITE_DATABASE_ID!,"stage",[ Query.equal("default", true) ]); // Load Default Knockout Stage
       
-  // Fetch Knockout Data with stage.documents[0].$id
-  let knockouts = await database.listDocuments(NEXT_PUBLIC_APPWRITE_DATABASE_ID!,"knockout",[ Query.equal("stage", stage.documents[0].$id) ]);
-  // Fetch Fixtures for Current Stage
-  let fixture = await database.listDocuments(NEXT_PUBLIC_APPWRITE_DATABASE_ID!,"fixture",[ Query.equal("stage", stage.documents[0].$id) ]);
-  
+  let fixture,knockouts;
+  if(stage?.total){
+    // Fetch Knockout Data with stage.documents[0].$id
+    knockouts = await database.listDocuments(NEXT_PUBLIC_APPWRITE_DATABASE_ID!,"knockout",[ Query.equal("stage", stage.documents[0].$id) ]);
+    // Fetch Fixtures for Current Stage
+    fixture = await database.listDocuments(NEXT_PUBLIC_APPWRITE_DATABASE_ID!,"fixture",[ Query.equal("stage", stage.documents[0].$id) ]);
+  }
+
   const data = await Promise.all([fixture,teams,stage,stages,tables,knockouts])
   return data;
 }
@@ -55,7 +59,7 @@ export default async function RootLayout({
   
   const formatTableData = () => {
     const gdata = new Map();
-    for(const tb of data[4].documents){
+    for(const tb of data[4]?.documents){
        const row:any = { ...tb, group: tb.group.name, team: tb.team.name }
        if(gdata.has(row.group)){
        const dm = gdata.get(row.group);
@@ -64,12 +68,13 @@ export default async function RootLayout({
          gdata.set(row.group, [row])
        }
     }
-    return Array.from(gdata);
+    //return Array.from(gdata); // Unsorted Map
+    return Array.from(new Map([...gdata.entries()].sort())); // Sorted Map in Alphabetical Order
   }
 
   const formatKnockoutData = () => {
     const gdata = new Map();
-    for(const tb of data[5].documents){
+    for(const tb of data[5]?.documents){
        const row:any = { ...tb, group: tb.group.name, team: tb.team.name }
        if(gdata.has(row.group)){
         const dm = gdata.get(row.group);
@@ -81,7 +86,31 @@ export default async function RootLayout({
     return Array.from(gdata);
   }
 
+  const formatThirdPlaceData = () => {
+    const gdata = new Map();
+    const thirdData:any = [];
+    for(const tb of data[4]?.documents){
+       const row:any = { ...tb, group: tb.group.name, team: tb.team.name }
+       if(gdata.has(row.group)){
+        const dm = gdata.get(row.group);
+         gdata.set(row.group, [...dm, row ])
+       } else {
+         gdata.set(row.group, [row])
+       }
+    }
+    const newData = Array.from(gdata);
+    newData?.map(([key,data], i) => {
+      const sortData = data.sort((a:any,b:any) => b.points - a.points);
+      for(let j = 0; j <= sortData.length; j++){
+          if(j==2) thirdData.push(sortData[j]);
+      }
+    })
+    //.sort((a:any,b:any) => b.points - a.points)
+    return [["Third Place Ranking", thirdData ]];
+  }
+
   const tables = formatTableData()
+  const thirdplaces = formatThirdPlaceData()
   const knockouts = await formatKnockoutData()
   const officials = [
     { name: 'ORGANIZING TEAM', slug: 'organizers'},
@@ -92,6 +121,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
+      <Script async src="https://cdn.splitbee.io/sb.js" />
       <body className={inter.className}>
         <div className="w-full h-full bg-slate-300">
           <div className="mx-auto w-full h-screen md:max-w-7xl bg-slate-50 md:rounded-b-3xl md:border-x-4 md:border-b-8 border-[#001e28] shadow-lg backdrop-blur-lg overflow-y-auto md:overflow-y-hidden">
@@ -157,13 +187,21 @@ export default async function RootLayout({
                 </div>
 
                 {/*  Group Table */}
-                <div className="order-2 md:order-3 py-4 px-2 w-full md:w-96 bg-blue-100/50 space-y-2 md:space-y-4">
-                  <div className="p-2 md:p-4 rounded-r-md bg-gray-50/50 border-l-8 border-red-800 shadow-md">
+                <div className="order-2 md:order-3 py-4 px-2 w-full md:w-96 h-full md:h-[calc(100vh-6rem)]  bg-blue-100/50 space-y-2 md:space-y-4 overflow-y-auto">
+                  {/* <div className="p-2 md:p-4 rounded-r-md bg-gray-50/50 border-l-8 border-red-800 shadow-md">
                       <h1 className="font-bold text-xs md:text-sm tracking-widest">TABLE STANDINGS</h1>
-                  </div>
+                  </div> */}
+                 
                   <div className="space-y-3">
+                      {/* Group Standings */}
                       { tables?.map(([key,data]:any, i:number) => (
-                        <GroupPill index={i} key={key} title={key} data={data.sort((a:any,b:any) => b.points - a.points)} />
+                        <GroupPill index={i} key={key} title={key?.toUpperCase()} data={data.sort((a:any,b:any) => b.points - a.points)} />
+                        ))
+                      }
+                      
+                      {/* Third Place Standings */}
+                      { thirdplaces?.map(([key,data]:any, i:number) => (
+                        <GroupPill index={i} key={key} title={key?.toUpperCase()} data={data.sort((a:any,b:any) => b.points - a.points)} />
                         ))
                       }
                   </div>
