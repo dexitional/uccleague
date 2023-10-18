@@ -7,7 +7,7 @@ import Pitch from '@/components/Pitch';
 import Link from 'next/link';
 const { NEXT_PUBLIC_APPWRITE_DATABASE_ID } = process.env;
 
-export const revalidate = 3000;
+export const revalidate = 1800;
 
 const getData = async (slug: any) => {
   try {

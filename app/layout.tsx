@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   description: 'Developed By Blay Technologies',
 }
 
-export const revalidate = 360;
+export const revalidate = 1800;
 
 const getData:any = async (stageId = null) => {
   let teams = await database.listDocuments(NEXT_PUBLIC_APPWRITE_DATABASE_ID!,"team",[]);

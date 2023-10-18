@@ -3,7 +3,7 @@ import FixturePill from '@/components/FixturePill'
 import Link from 'next/link';
 const { NEXT_PUBLIC_APPWRITE_DATABASE_ID } = process.env;
 
-export const revalidate = 360;
+export const revalidate = 1800;
 
 const getData:any = async (stageId = null) => {
   // Current Stage where Default is true

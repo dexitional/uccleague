@@ -6,7 +6,7 @@ import { Query, database } from '@/appwrite'
 import MainTeamPill from '@/components/MainTeamPill'
 const { NEXT_PUBLIC_APPWRITE_DATABASE_ID } = process.env;
 
-export const revalidate = 360;
+export const revalidate = 1800;
 
 const getData:any = async () => {
     let teams = await database.listDocuments(NEXT_PUBLIC_APPWRITE_DATABASE_ID!,"team",[Query.orderAsc("name")]);

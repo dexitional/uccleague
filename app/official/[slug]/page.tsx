@@ -10,7 +10,7 @@ import { Metadata } from 'next'
 import { MdContactPhone } from 'react-icons/md'
 import { BsPhoneFill } from 'react-icons/bs'
 
-export const revalidate = 360;
+export const revalidate = 1800;
 
 const getData = async (slug: string) => {
   // const query = `*[_type == "official" && slug.current == $slug] | order(_createdAt desc) {_id,title,author->{name,image},categories[]->{title},mainImage,slug,_createdAt,publishedAt,body[]{ ..., asset->{ ..., "_key": _id } }}[0]`
