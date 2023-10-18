@@ -25,7 +25,7 @@ function SquadPill({ row }: Props) {
                     <div className="py-0.5 flex items-center space-x-2">
                         {/* <GiBorderedShield /> */}
                         <div className="relative h-10 w-10 rounded-full overflow-hidden bg-white border-2">
-                            <Image className="object-contain rounded-md" src={`https://ehub.ucc.edu.gh/api/photos/?tag=${row.staffNo}`} alt={row.firstName} fill />
+                            <Image loading='lazy' className="object-contain rounded-md" src={`https://ehub.ucc.edu.gh/api/photos/?tag=${row.staffNo}`} alt={row.firstName} fill />
                         </div>
                         <span className="font-semibold text-slate-500">{row.lastName?.toUpperCase()}, {row.firstName?.toUpperCase()}</span>
                     </div>

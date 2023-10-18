@@ -55,7 +55,7 @@ async function Team({ params }: { params: { slug: string }}) {
                     <h1 className="ml-5 py-1 px-5 font-bold text-sm text-center text-slate-400 tracking-wider bg-slate-200 -skew-x-12">TEAM MANAGER</h1>
                     <div className="w-full h-full rounded-md border-2 flex flex-col items-center justify-center space-y-0.5">
                         <div className="relative h-32 w-32 rounded-full border-4 overflow-hidden">
-                          <Image src={`https://ehub.ucc.edu.gh/api/photos/?tag=${team?.documents[0]?.coachStaffNo}`} alt="" fill />
+                          <Image loading='lazy' src={`https://ehub.ucc.edu.gh/api/photos/?tag=${team?.documents[0]?.coachStaffNo}`} alt="" fill />
                         </div>
                         <p className="py-0.5 px-4 text-xs font-bold text-gray-400 bg-slate-100 rounded uppercase tracking-wider">{team?.documents[0]?.coachName}</p>
                     </div>
