@@ -18,7 +18,7 @@ function SquadPill({ row }: Props) {
             <div className="text-[0.6rem] font-bold text-slate-500 uppercase tracking-wider">{row.staffNo}</div>
         </div>
 
-        <div className="ml-3 md:pl-3 flex-1 md:flex-1 flex md:items-center justify-start md:justify-between space-x-7 text-xs">
+        <div className="ml-3 px-3 md:pl-3 w-full md:flex-1 flex md:items-center justify-between space-x-7 text-xs">
             {/* Image */}
             <div className="w-full flex flex-col space-y-1 ">
                 <div className="w-full flex items-center justify-between space-x-7">
