@@ -14,7 +14,7 @@ const getData = async (slug: any) => {
     let squad;
     let team:any = await database.listDocuments(NEXT_PUBLIC_APPWRITE_DATABASE_ID!,"team", [ Query.equal("nickname", slug) ])  // Fetch Team Info
     if(team.total)
-      squad = await database.listDocuments(NEXT_PUBLIC_APPWRITE_DATABASE_ID!,"squad",[ Query.equal("team", team.documents[0].$id) ]);
+      squad = await database.listDocuments(NEXT_PUBLIC_APPWRITE_DATABASE_ID!,"squad",[ Query.equal("team", team.documents[0].$id), Query.orderAsc("kitNo") ]);
     const data = await Promise.all([team,squad])
     return data;
     
@@ -35,32 +35,42 @@ async function Team({ params }: { params: { slug: string }}) {
 //   ]
 
   return (
-    <div className="w-full max-w-xl space-y-2">
+    <div className="w-full max-h-[calc(100vh-6rem)]  max-w-xl space-y-2">
         <div className="p-2 md:p-4 rounded-r-md bg-gray-50/50 border-l-8 border-blue-950 shadow-md">
-        <h1 className="w-full flex items-center justify-between font-bold text-[0.65rem] md:text-sm tracking-widest">
+        <h1 className="w-full flex items-center justify-between font-bold text-[0.65rem] md:text-base tracking-widest">
             <span className="uppercase">{team?.documents[0]?.name}</span>
             <Link href="/teams" className="py-0.5 px-2 rounded-md bg-blue-950 text-xs text-white uppercase">TEAMS</Link>
         </h1>
         </div>
         
-        <div className="px-4 py-10 w-full grid grid-cols-1 gap-8 rounded-lg shadow-xl overflow-y-auto">
-       
+        <div className="px-4 py-10 w-full grid grid-cols-1 gap-8 rounded-lg shadow-xl">
           <article className="space-y-3"> 
+              <div className="flex flex-col md:flex-row justify-between space-y-4 md:space-y-0 md:space-x-4">
+                <div className="order-2 md:order-1 flex-auto">
+                  <Pitch>
+                    <div></div>
+                  </Pitch>
+                </div>
+                <div className="order-1 md:order-2 w-full h-40 md:w-48">
+                    <h1 className="ml-5 py-1 px-5 font-bold text-sm text-center text-slate-400 tracking-wider bg-slate-200 -skew-x-12">TEAM MANAGER</h1>
+                    <div className="w-full h-full rounded-md border-2 flex items-center justify-center">
+                        <div className="relative h-32 w-32">
+                          <Image src={`https://ehub.ucc.edu.gh/api/photos/?tag=${team?.documents[0]?.coachStaffNo}`} alt="" fill />
+                        </div>
+                        <p>{team?.documents[0]?.coachName}</p>
+                    </div>
+                </div>
+              </div>
               
-              
-              <Pitch>
-                {/* 4-4-2 */}
-                <div></div>
-              </Pitch>
               <h1 className="text-base font-bold text-slate-500 tracking-widest">SQUAD</h1>
-              <div className="grid grid-cols-1 gap-4">
+              <div className="md:max-h-[34rem] grid grid-cols-1 gap-2 md:overflow-y-auto">
               { squad?.documents?.map((row:any) => (
                   <SquadPill key={row.$id} row={row} />
               ))}
               </div>
-              <div className="py-4 flex items-center justify-between text-sm text-gray-600">
+              {/* <div className="py-4 flex items-center justify-between text-sm text-gray-600">
                   
-              </div>
+              </div> */}
           </article>
         </div>
     </div>
