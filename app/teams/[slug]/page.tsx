@@ -33,7 +33,6 @@ async function Team({ params }: { params: { slug: string }}) {
 //     { name: team.coachName, staffNo: team.coachStaffNo, role:'Head Coach', contact: team.coachContact },
 //     { name: team.assCoachName, staffNo: team.assCoachStaffNo, role:'Assistant Coach', contact: team.coachContact }
 //   ]
-
   return (
     <div className="w-full md:max-h-[calc(100vh-6rem)]  max-w-xl space-y-2">
         <div className="p-2 md:p-4 rounded-r-md bg-gray-50/50 border-l-8 border-blue-950 shadow-md">
@@ -48,7 +47,18 @@ async function Team({ params }: { params: { slug: string }}) {
               <div className="flex flex-col md:flex-row justify-between space-y-4 md:space-y-0 md:space-x-4">
                 <div className="flex-auto">
                   <Pitch>
-                    <div></div>
+                    <div className="w-full h-full flex items-center justify-start space-x-10">
+                      {/* Team Setup or Tactics */}
+                      { team.documents[0]?.teamTactics?.split(':')?.map((row:any,i:number) => (
+                       <div key={i} className="flex flex-col items-center justify-between space-y-3">
+                          { row.split(' ').map((kitNo:any,j:number) => (
+                          <div key={j} className="w-8 h-8 rounded-full bg-green-100 border-green-400 flex items-center justify-center">
+                            <span className="font-bold text-gray-800">{kitNo}</span>
+                          </div>
+                          ))}
+                       </div> 
+                     ))}
+                    </div>
                   </Pitch>
                 </div>
                 <div className="w-full h-40 md:w-48">
@@ -70,9 +80,6 @@ async function Team({ params }: { params: { slug: string }}) {
                 ))}
                 </div>
               </div>
-              {/* <div className="py-4 flex items-center justify-between text-sm text-gray-600">
-                  
-              </div> */}
           </article>
         </div>
     </div>
