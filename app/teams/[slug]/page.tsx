@@ -52,7 +52,7 @@ async function Team({ params }: { params: { slug: string }}) {
                       { team.documents[0]?.teamTactics?.split(':')?.map((row:any,i:number) => (
                        <div key={i} className="flex flex-col items-center justify-between space-y-3">
                           { row.split(' ').map((kitNo:any,j:number) => (
-                          <div key={j} className="w-8 h-8 rounded-full bg-green-100 border-green-400 flex items-center justify-center">
+                          <div key={j} className="w-8 h-8 rounded-full bg-green-100 border-green-700 flex items-center justify-center">
                             <span className="font-bold text-gray-800">{kitNo}</span>
                           </div>
                           ))}
