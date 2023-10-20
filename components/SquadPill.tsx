@@ -10,7 +10,7 @@ type Props = {
 
 function SquadPill({ row }: Props) {
    return (
-    <div className="relative overflow-hidden p-2 md:px-4 md:py-1 w-full rounded border bg-slate-100 flex flex-col md:flex-row items-center justify-start md:justify-center space-y-2 md:space-y-0 md:space-x-5">
+    <div className="relative overflow-hidden p-2 md:px-4 md:py-1 w-full rounded border bg-slate-100 flex flex-col md:flex-row items-center justify-start md:justify-center space-y-2 md:space-y-0 md:space-x-5 shadow-inner shadow-gray-200/30">
         <div className={`absolute top-0 left-0 py-0.5 h-full w-4 flex md:hidden items-center justify-center ${row.role == 'attacker' ? 'bg-green-800' : row.role == 'midfielder' ? 'bg-gray-600' : 'bg-blue-900' }`}>
             <div className="-rotate-90 text-[0.48rem] font-bold text-white uppercase tracking-wider">{row.role}</div>
         </div>
@@ -35,7 +35,7 @@ function SquadPill({ row }: Props) {
         </div>
         <div className="hidden md:flex px-1.5 py-0.5 text-[0.6em] bg-white text-gray-400 font-semibold uppercase border border-gray-400 rounded-md tracking-wider">{row.role}</div>
         <div className="w-fit hidden md:flex justify-end text-base">
-            <div className={`px-2 font-bold bg-white text-gray-400 border-2 border-gray-400 rounded-lg`}>{row.kitNo}</div>
+            <div className={`px-2 font-bold bg-white text-gray-400 border-2 border-gray-400 rounded-lg font-mono italic`}>{row.kitNo}</div>
         </div>
     </div>
   )

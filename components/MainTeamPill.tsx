@@ -29,7 +29,7 @@ function MainTeamPill({ row,index }: Props) {
     const form = row.teamRecentForm?.split('');
 
   return (
-    <motion.div initial="hidden" animate="visible" variants={animate} className={`bg-slate-100 relative overflow-hidden p-2 md:p-4 w-full rounded border flex flex-col md:flex-row items-center justify-start md:justify-center space-y-2 md:space-y-0 md:space-x-5`}>
+    <motion.div initial="hidden" animate="visible" variants={animate} className={`bg-slate-100 relative overflow-hidden p-2 md:p-4 w-full rounded border flex flex-col md:flex-row items-center justify-start md:justify-center space-y-2 md:space-y-0 md:space-x-5 shadow-inner shadow-gray-300/30`}>
         
         <div className={`absolute top-0 left-0 py-0.5 h-full w-2 flex md:hidden items-center justify-center bg-gray-400`}>
             {/* <div className="-rotate-90 text-[0.48rem] font-bold text-white uppercase tracking-wider">GROUP A</div> */}
@@ -46,12 +46,12 @@ function MainTeamPill({ row,index }: Props) {
         </div>
         ): null }
 
-        <div className="w-full md:flex-1 flex md:items-center justify-start md:justify-between space-x-7 text-xs">
+        <div className="w-full md:flex-1 flex md:items-center justify-start md:justify-between space-x-7 text-xs ">
             <div className="hidden md:flex"><BiFootball className="h-7 w-7 " /></div>
             {/* <div className="w-16 font-medium italic">
                 <span>TEST</span><br/><span className="font-bold text-[0.75em] not-italic uppercase">23</span>
             </div> */}
-            <div className="w-full flex flex-col space-y-1 ">
+            <div className="w-full flex flex-col space-y-1">
                 <div className="flex items-center justify-between space-x-7">
                     <div className="flex items-center space-x-2">
                         <GiSlashedShield className="h-6 w-6" />
@@ -64,7 +64,10 @@ function MainTeamPill({ row,index }: Props) {
                         <div className="relative h-5 w-5">
                             <Image className="object-cover" src={Logo} alt="" fill/>
                         </div>
-                        <FcManager className="h-5 w-5" />
+                        {/* <FcManager className="h-5 w-5" /> */}
+                        <div className="relative h-6 w-6 rounded-full overflow-hidden">
+                            <Image className="object-cover" src={`https://ehub.ucc.edu.gh/api/photos/?tag=${row.coachStaffNo}`} alt="" fill />
+                        </div>
                         <span className="font-semibold">{row.coachName.toUpperCase()}</span>
                     </div>
                 </div>
