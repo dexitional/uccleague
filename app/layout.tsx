@@ -40,7 +40,7 @@ const getData:any = async (stageId = null) => {
     knockouts = await database.listDocuments(NEXT_PUBLIC_APPWRITE_DATABASE_ID!,"knockout",[ Query.equal("stage", stage.documents[0].$id) ]);
   }
 
-  const data = await Promise.all([null,teams,stage,stages,tables,knockouts])
+  const data = await Promise.all([fixture,teams,stage,stages,tables,knockouts])
   return data;
 }
 
