@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   description: 'Developed By Blay Technologies',
 }
 
-export const revalidate = 1800;
+export const revalidate = 720;
 
 const getData:any = async (stageId = null) => {
   let teams = await database.listDocuments(NEXT_PUBLIC_APPWRITE_DATABASE_ID!,"team",[]);
@@ -38,11 +38,9 @@ const getData:any = async (stageId = null) => {
   if(stage?.total){
     // Fetch Knockout Data with stage.documents[0].$id
     knockouts = await database.listDocuments(NEXT_PUBLIC_APPWRITE_DATABASE_ID!,"knockout",[ Query.equal("stage", stage.documents[0].$id) ]);
-    // Fetch Fixtures for Current Stage
-    fixture = await database.listDocuments(NEXT_PUBLIC_APPWRITE_DATABASE_ID!,"fixture",[ Query.equal("stage", stage.documents[0].$id) ]);
   }
 
-  const data = await Promise.all([fixture,teams,stage,stages,tables,knockouts])
+  const data = await Promise.all([null,teams,stage,stages,tables,knockouts])
   return data;
 }
 
