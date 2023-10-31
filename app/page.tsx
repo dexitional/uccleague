@@ -29,7 +29,8 @@ export default async function Home({ searchParams }: { searchParams: { stage: st
   
   const stageId = searchParams?.stage;
   const data: any = await getData(stageId);
-
+  const live = data[0]?.documents?.filter((r:any) => r.kickstatus == 'live')
+  
   const formatKnockoutData = () => {
     const gdata = new Map();
     for(const tb of data[2]?.documents){
@@ -37,7 +38,6 @@ export default async function Home({ searchParams }: { searchParams: { stage: st
           gdata.set(tb.slot, tb)
       }
     }
-    //return Array.from(gdata);
     return gdata;
   }
   
@@ -51,9 +51,12 @@ export default async function Home({ searchParams }: { searchParams: { stage: st
           </h1>
         </div>
 
-        {/* <div className="z-20 m-0 sticky top-9 md:top-12">
-          <LivePill data={data[0]?.documents?.filter((r:any) => r.kickstatus == 'live')[0]} />
-        </div> */}
+        { live?.length ?
+        <div className="z-20 m-0 sticky top-9 md:top-12">
+          <LivePill data={live && live[0]} />
+        </div>
+        : null
+        }
 
         <RoadMap data={formatKnockoutData()} />
 

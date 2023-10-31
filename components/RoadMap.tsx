@@ -16,14 +16,13 @@ function RoadMap({ data }: Props) {
   const s2 = data.get('s2');
   // Finals
   const f = data.get('f');
-  console.log("ROAD MAP:", q1)
   
   return (
     <div className="z-20 m-0 sticky top-9 md:top-12">
         <h1 className="block md:hidden ml-3 px-4 py-1 w-fit bg-slate-200 text-sm text-gray-500 font-extrabold tracking-widest rounded-t-md font-sans">ROAD TO FINAL</h1>
         <div className="overflow-x-auto md:overflow-visible bg-slate-50 border rounded-lg shadow  ">
-            <div className="relative p-2 h-96 flex items-center space-x-6 md:overflow-hidden">
-                <h1 className="hidden md:block absolute top-0 -right-2 px-4 py-1 w-fit bg-slate-200 text-sm text-gray-500 font-extrabold tracking-widest rounded-b-md font-sans">ROAD TO FINAL</h1>
+            <div className="relative py-10 px-2 h-[26rem] flex items-center space-x-6 md:overflow-hidden">
+                <h1 className="hidden md:block absolute top-0 -right-2 px-4 py-1 w-fit bg-red-100 text-sm text-gray-500 border border-slate-300 font-extrabold tracking-widest rounded-b-md font-sans">ROAD TO FINAL</h1>
                 {/* Quaters  */}
                 <div className="relative h-full flex flex-col justify-between space-y-1 ">
                     <StageFixtureCard data={q1} />
