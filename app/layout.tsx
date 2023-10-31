@@ -34,13 +34,9 @@ const getData:any = async (stageId = null) => {
       ? await database.listDocuments(NEXT_PUBLIC_APPWRITE_DATABASE_ID!,"stage", stageId)  // Load Knockout Stage with StageId
       : await database.listDocuments(NEXT_PUBLIC_APPWRITE_DATABASE_ID!,"stage",[ Query.equal("default", true) ]); // Load Default Knockout Stage
       
-  let fixture,knockouts;
-  if(stage?.total){
-    // Fetch Knockout Data with stage.documents[0].$id
-    knockouts = await database.listDocuments(NEXT_PUBLIC_APPWRITE_DATABASE_ID!,"knockout",[ Query.equal("stage", stage.documents[0].$id) ]);
-  }
-
-  const data = await Promise.all([fixture,teams,stage,stages,tables,knockouts])
+  let fixture;
+  
+  const data = await Promise.all([fixture,teams,stage,stages,tables])
   return data;
 }
 
@@ -70,20 +66,7 @@ export default async function RootLayout({
     return Array.from(new Map([...gdata.entries()].sort())); // Sorted Map in Alphabetical Order
   }
 
-  const formatKnockoutData = () => {
-    const gdata = new Map();
-    for(const tb of data[5]?.documents){
-       const row:any = { ...tb, group: tb.group.name, team: tb.team.name }
-       if(gdata.has(row.group)){
-        const dm = gdata.get(row.group);
-         gdata.set(row.group, [...dm, row ])
-       } else {
-         gdata.set(row.group, [row])
-       }
-    }
-    return Array.from(gdata);
-  }
-
+  
   const formatThirdPlaceData = () => {
     const gdata = new Map();
     const thirdData:any = [];
@@ -109,7 +92,6 @@ export default async function RootLayout({
 
   const tables = formatTableData()
   const thirdplaces = formatThirdPlaceData()
-  const knockouts = await formatKnockoutData()
   const officials = [
     { name: 'ORGANIZING TEAM', slug: 'organizers'},
     { name: 'MANAGEMENT TEAM', slug: 'referees'},
@@ -126,7 +108,6 @@ export default async function RootLayout({
             
             {/* Advertisement & Sponsors - #00141e */}
             <header className="z-10 fixed px-6 w-full h-24 bg-[#001e28] flex items-center justify-between space-x-4">
-             
               <div className="flex items-center">
                 <div className="relative md:w-24 md:h-16">
                   <Image className="" src={Logo} alt="Logo" fill />

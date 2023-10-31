@@ -11,4 +11,176 @@ generator client {
   provider = "prisma-client-js"
 }
 
+model customer {
+  id Int @id @default(autoincrement())
+  firstName String 
+  lastName String 
+  address String 
+  phone String
+  email String
+  dob DateTime
+  idType String // Enum - ghana card, voters id
+  idCardNo String
+  chargeType String? // Momo, ATCash,Vodacash  
+  ChargeNumber String?
+  status Boolean @default(true)
+}
 
+model subscription {
+  id Int @id @default(autoincrement())
+  customerId Int // Relation 
+  paymentId Int // Relation
+  narrative String // Title of Package
+  startPeriod DateTime
+  endPeriod DateTime
+  status String // Enum - expired, active, pended
+}
+
+model plan {
+  id Int @id @default(autoincrement())
+  name String 
+  description String
+  gamePack Int // Number of Game Limits
+  leaguePack Int // Number of Tournaments
+  teamPack Int // Number of Teams
+  costPerMonth String 
+  costPerYear String 
+  status Boolean @default(true)
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model payment {
+  id Int @id @default(autoincrement())
+  customerId Int // Relation 
+  planId Int // Relation
+  reference String
+  amount Float?
+  paidType String //Enum - Momo, ATCash, Vodacash
+  paidNumber String // Number for Payment
+  paidReference String
+  paidStatus Boolean @default(false)
+  paidAt DateTime 
+  status String // Enum - Pended, completed, cancelled, processing
+  
+  createdAt DateTime @default(now())
+}
+
+
+model league {
+  id Int @id @default(autoincrement())
+  customerId Int // Relation
+  gameId Int // Relation Multiple
+  name String
+  slug String @unique
+  code String @unique // Unique League Code for Setup and Search in Database
+  status Boolean @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index(code)
+}
+model user {
+  id Int @id @default(autoincrement())
+  leagueId Int // Relation
+  roleId Int // Relation
+  name String 
+  email String
+  phone String
+  pin String
+  inviteToken String @unique
+  inviteSent Boolean @default(false)
+  inviteAccept Boolean @default(false)
+  status Boolean @default(true)
+
+  @@index(inviteToken)
+}
+
+model role { // admin, commissioner, manager, media,  
+  id Int @id @default(autoincrement())
+  name String 
+  status Boolean @default(true)
+}
+
+model game {
+  id Int @id @default(autoincrement())
+  name String 
+  status Boolean @default(true)
+}
+
+model stage {
+  id Int @id 
+  gameId String // relation
+  name String
+  type String // group,knockout
+  order Int
+  default Boolean @default(false)
+  complete Boolean @default(false)
+}
+model team {
+  id Int @id @default(autoincrement())
+  name String @db.Text()
+  nickName String
+  logo String @db.Text()
+  coachName String
+  coachContact String
+  coachEmail String
+  coachStaffNo String
+  assCoachName String
+  assCoachContact String
+  teamTactics String
+  teamRecentForm String
+  teamHeadWins String
+}
+model squad {
+  id Int @id @default(autoincrement())
+  stageId String
+  name String 
+}
+model group {
+  id Int @id  @default(autoincrement())
+  stageId String
+  name String 
+  status Boolean @default(true)
+}
+model standing {
+  id Int @id 
+}
+model knocknout {
+  id Int @id 
+}
+
+model fixture {
+  id Int @id @default(autoincrement())
+  groupId String
+  homeTeamId String 
+  awayTeamId String 
+  homeLineupId String
+  awayLineupId String
+  kickoff DateTime
+  kickstatus String
+  score String
+  red String
+  yellow String
+  corner String
+  freekick String
+  posession String
+  saves String
+  shotOn String
+  shotOff String
+  afterPenaltyScore String
+  afterExtraScore String
+ 
+  //stageId String
+  commentary String
+}
+
+model lineup {
+  id Int @id 
+  teamId String 
+  startSquad String @db.Text()
+  reserveSquad String
+  verified Boolean @default(false)
+}
