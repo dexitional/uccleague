@@ -123,11 +123,11 @@ export default async function RootLayout({
               <nav className="md:h-20 flex items-center bg-red-50 rounded-sm md:rounded-md text-blue-950">
                 <Link href="/" className="p-2 md:p-6 font-black text-sm md:text-lg border-r-2 border-dashed border-blue-950 flex items-center space-x-2">
                   <MdOutlineScoreboard className="w-5 md:w-7 h-5 md:h-7" />
-                  <span>Scores</span>
+                  <span className="hidden md:block">Scores</span>
                 </Link>
                 <Link href="/news" className="p-2 md:p-6 font-black text-sm md:text-lg flex items-center space-x-2">
                   <BiNews className="w-5 md:w-7 h-5 md:h-7" />
-                  <span>News</span>
+                  <span className="hidden md:block">News</span>
                 </Link>
               </nav>
             </header>
