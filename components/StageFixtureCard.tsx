@@ -14,7 +14,7 @@ function StageFixtureCard({ data }: Props) {
         <div className="w-full flex items-center justify-between space-x-2">
             <div className="flex-1 flex items-center space-x-1.5">
                 <GiBorderedShield />
-                <div className={`w-[7.5rem] flex-1 truncate ${data?.matchWinner == data?.teams[0]?.$id ? 'font-extrabold animate-pulse':'font-normal'} ${!data?.teams[0]?.name && 'text-gray-300'}`}>{data?.teams[0]?.name || <span className="font-normal text-[0.65rem]">-- WINNER SLOT --</span>}</div>
+                <div className={`w-[7.5rem] flex-1 truncate ${data?.matchWinner == data?.teams[0]?.$id ? 'font-extrabold animate-pulse':'font-normal'} ${!data?.teams[0]?.name && 'text-gray-300'}`}>{data?.teams[0]?.name || <span className="font-normal text-[0.65rem]">-- RESERVED WINNER SLOT --</span>}</div>
             </div>
             {/* <div className={`text-xs font-sans ${data?.matchWinner == data?.teams[0]?.$id ? 'font-extrabold':'font-normal'} ${(!data?.scorers || data?.kickstatus != 'finished') && 'text-gray-300'}`}>{data?.kickstatus == 'finished' && data?.scorers?.split(":")[0] || '-'} (0)</div> */}
             <div className={`text-xs font-sans flex items-center space-x-0.5 ${data?.matchWinner == data?.teams[0]?.$id ? 'font-extrabold':'font-normal'} ${(!data?.scorers || data?.kickstatus != 'finished') && 'text-gray-300'}`}>
@@ -26,7 +26,7 @@ function StageFixtureCard({ data }: Props) {
         <div className="w-full flex items-center justify-between space-x-2">
             <div className="flex-1 flex items-center space-x-1.5">
                 <GiRosaShield />
-                <div className={`w-[7.5rem] flex-1 truncate ${data?.matchWinner == data?.teams[1]?.$id ? 'font-extrabold animate-pulse':'font-normal'} ${!data?.teams[1]?.name && 'text-gray-300'}`}>{data?.teams[1]?.name || <span className="font-normal text-[0.65rem]">-- WINNER SLOT --</span>}</div>
+                <div className={`w-[7.5rem] flex-1 truncate ${data?.matchWinner == data?.teams[1]?.$id ? 'font-extrabold animate-pulse':'font-normal'} ${!data?.teams[1]?.name && 'text-gray-300'}`}>{data?.teams[1]?.name || <span className="font-normal text-[0.65rem]">-- RESERVED WINNER SLOT --</span>}</div>
             </div>
             <div className={`text-xs font-sans flex items-center space-x-0.5 ${data?.matchWinner == data?.teams[1]?.$id ? 'font-extrabold':'font-normal'} ${(!data?.scorers || data?.kickstatus != 'finished') && 'text-gray-300'}`}>
                 <span>{data?.kickstatus == 'finished' && data?.scorers?.split(":")[1] || '-'}</span>
