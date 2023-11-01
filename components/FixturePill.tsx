@@ -53,14 +53,14 @@ function FixturePill({ row,index }: Props) {
                         <GiBorderedShield />
                         <span className="font-semibold">{homeTeam}</span>
                     </div>
-                    <span className={`flex md:hidden ${row.kickstatus == 'scheduled' ? 'font-medium text-gray-600': 'font-black text-red-900'}`}>{row.kickstatus == 'scheduled' ? '-' : homeGoals }{row.afterPenaltyScore ? <span className="ml-3 font-medium font-mono text-[0.6rem] text-slate-400 italic">P({homeDGoals})</span>:'' }</span>
+                    <span className={`flex md:hidden ${row.kickstatus == 'scheduled' ? 'font-medium text-gray-600': 'font-black text-red-900'}`}>{['scheduled','postponed'].includes(row.kickstatus) ? '-' : homeGoals }{row.afterPenaltyScore ? <span className="ml-3 font-medium font-mono text-[0.6rem] text-slate-400 italic">P({homeDGoals})</span>:'' }</span>
                 </div>
                 <div className="flex items-center justify-between space-x-7">
                     <div className="flex items-center space-x-2">
                         <GiRosaShield />
                         <span className="font-semibold">{awayTeam}</span>
                     </div>
-                    <span className={`flex md:hidden ${row.kickstatus == 'scheduled' ? 'font-medium text-gray-600': 'font-black text-red-900'}`}>{row.kickstatus == 'scheduled' ? '-' : awayGoals }{row.afterPenaltyScore ? <span className="ml-3 font-medium font-mono text-[0.6rem] text-slate-400 italic">P({awayDGoals})</span>:'' }</span>
+                    <span className={`flex md:hidden ${row.kickstatus == 'scheduled' ? 'font-medium text-gray-600': 'font-black text-red-900'}`}>{['scheduled','postponed'].includes(row.kickstatus) ? '-' : awayGoals }{row.afterPenaltyScore ? <span className="ml-3 font-medium font-mono text-[0.6rem] text-slate-400 italic">P({awayDGoals})</span>:'' }</span>
                 </div>
             </div>
         </div>
@@ -68,10 +68,10 @@ function FixturePill({ row,index }: Props) {
         <div className="w-fit hidden md:flex justify-end text-xs">
             <div className="flex flex-col space-y-1">
                 <div className="flex items-center space-x-2">
-                    <span className={`hidden md:flex ${row.kickstatus == 'scheduled' ? 'font-medium text-gray-600': 'font-black text-red-900'}`}>{row.kickstatus == 'scheduled' ? '-' : homeGoals }{row.afterPenaltyScore ? <span className="ml-2 font-medium font-mono text-[0.6rem] text-slate-400 italic">P({homeDGoals})</span>:''}</span>
+                    <span className={`hidden md:flex ${row.kickstatus == 'scheduled' ? 'font-medium text-gray-600': 'font-black text-red-900'}`}>{['scheduled','postponed'].includes(row.kickstatus) ? '-' : homeGoals }{row.afterPenaltyScore ? <span className="ml-2 font-medium font-mono text-[0.6rem] text-slate-400 italic">P({homeDGoals})</span>:''}</span>
                 </div>
                 <div className="flex items-center space-x-2">
-                <span className={`hidden md:flex ${row.kickstatus == 'scheduled' ? 'font-medium text-gray-600': 'font-black text-red-900'}`}>{row.kickstatus == 'scheduled' ? '-' : awayGoals }{row.afterPenaltyScore ? <span className="ml-2 font-medium font-mono text-[0.6rem] text-slate-400 italic">P({awayDGoals})</span>:''}</span>
+                <span className={`hidden md:flex ${row.kickstatus == 'scheduled' ? 'font-medium text-gray-600': 'font-black text-red-900'}`}>{['scheduled','postponed'].includes(row.kickstatus) ? '-' : awayGoals }{row.afterPenaltyScore ? <span className="ml-2 font-medium font-mono text-[0.6rem] text-slate-400 italic">P({awayDGoals})</span>:''}</span>
                 </div>
             </div>
         </div>

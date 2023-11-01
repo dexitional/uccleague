@@ -12,6 +12,7 @@ import Logo from '@/public/eagle.png'
 import OfficialPill from '@/components/OfficialPill'
 import StagePill from '@/components/StagePill'
 import Script from 'next/script'
+import { GiLaurelsTrophy } from 'react-icons/gi'
 const { NEXT_PUBLIC_APPWRITE_DATABASE_ID } = process.env;
 
 
@@ -107,14 +108,16 @@ export default async function RootLayout({
           <div className="mx-auto w-full h-screen md:max-w-7xl bg-slate-50 md:rounded-b-3xl md:border-x-4 md:border-b-8 border-[#001e28] shadow-lg backdrop-blur-lg overflow-y-auto md:overflow-y-hidden">
             
             {/* Advertisement & Sponsors - #00141e */}
-            <header className="z-10 fixed px-6 w-full h-24 bg-[#001e28] flex items-center justify-between space-x-4">
-              <div className="flex items-center">
-                <div className="relative md:w-24 md:h-16">
-                  <Image className="" src={Logo} alt="Logo" fill />
+            <header className="z-10 fixed px-3 md:px-6 w-full h-24 bg-[#001e28] flex items-center justify-between space-x-4">
+              <div className="flex items-center space-x-1 md:space-x-2">
+                <div className="relative w-14 h-14 md:w-20 md:h-20">
+                  {/* <Image className="" src={Logo} alt="Logo" fill /> */}
+                  <GiLaurelsTrophy className="h-14 w-14 md:h-20 md:w-20 text-white"  />
+                  <span className="absolute top-1/3 left-1/2 -translate-y-1/2 -translate-x-1/2 font-extrabold text-blue-950 text-[0.6rem] md:text-sm -rotate-90 tracking-widest">UCC</span>
                 </div> 
-                <div className="flex flex-col">
-                  <span className="text-slate-100 font-arial font-black text-[2rem] md:text-6xl tracking-[0.4em]">USL</span>
-                  <span className="text-slate-100 font-tahoma font-normal  text-[0.55em] md:text-base tracking-wider">UCC STAFF LEAGUE</span>
+                <div className="flex flex-col -space-y-2 md:space-y-0">
+                  <span className="text-slate-100 font-arial font-black text-[2rem] md:text-6xl tracking-[0.8rem] italic">USL</span>
+                  <span className="text-slate-100 font-tahoma font-normal  text-[0.55em] md:text-sm tracking-wider">UCC STAFF LEAGUE</span>
                 </div>
               </div>
               <nav className="md:h-20 flex items-center bg-red-50 rounded-sm md:rounded-md text-blue-950">

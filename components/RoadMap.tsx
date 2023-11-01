@@ -1,5 +1,6 @@
 import React from 'react'
 import StageFixtureCard from './StageFixtureCard'
+import { GiDiamondTrophy } from 'react-icons/gi';
 
 type Props = {
     data: any
@@ -26,9 +27,9 @@ function RoadMap({ data }: Props) {
                 {/* Quaters  */}
                 <div className="relative h-full flex flex-col justify-between space-y-1 ">
                     <StageFixtureCard data={q1} />
+                    <StageFixtureCard data={q4} />
                     <StageFixtureCard data={q2} />
                     <StageFixtureCard data={q3} />
-                    <StageFixtureCard data={q4} />
                 </div>
                 {/* Semis */}
                 <div className="relative h-[16.8rem] flex flex-col justify-between space-y-1 ">
@@ -40,6 +41,9 @@ function RoadMap({ data }: Props) {
                 {/* Finals */}
                 <div className="relative h-16 flex flex-col justify-between space-y-1 ">
                     <div className="z-10 absolute -top-7 -left-28 h-32 w-32 border-l-0 border-t-2 border-r-2 border-red-400 rotate-45"></div>
+                    <div className="z-10 absolute -top-24 left-1/2 -translate-x-1/2 ">
+                        <GiDiamondTrophy className="w-24 h-24 text-blue-950" />
+                    </div>
                     <StageFixtureCard data={f} />
                 </div>
             </div>
