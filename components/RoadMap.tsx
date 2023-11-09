@@ -46,7 +46,11 @@ function RoadMap({ data }: Props) {
                         <GiDiamondTrophy className="w-24 h-24 text-blue-950" />
                     </div>
                     <StageFixtureCard data={f} />
-                    <StageFixtureCard data={tft} />
+                    <div className="relative top-10">
+                        <div className="absolute -top-20 left-1/2 h-20 w-1.5 bg-slate-300"></div>
+                        <div className="absolute -top-4 left-4 py-0.5 h-6 w-40 bg-slate-300 rounded-t-md font-semibold text-center text-[0.65rem] tracking-widest text-gray-600">THIRD & FOURTH</div>
+                        <StageFixtureCard data={tf} />
+                    </div>
                 </div>
             </div>
         </div>
