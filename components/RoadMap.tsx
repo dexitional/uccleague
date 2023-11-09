@@ -17,6 +17,7 @@ function RoadMap({ data }: Props) {
   const s2 = data.get('s2');
   // Finals
   const f = data.get('f');
+  const tf = data.get('tf');
   
   return (
     <div className="z-20 m-0 sticky top-9 md:top-12">
@@ -45,6 +46,7 @@ function RoadMap({ data }: Props) {
                         <GiDiamondTrophy className="w-24 h-24 text-blue-950" />
                     </div>
                     <StageFixtureCard data={f} />
+                    <StageFixtureCard data={tft} />
                 </div>
             </div>
         </div>

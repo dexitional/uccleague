@@ -60,6 +60,15 @@ export default async function Home({ searchParams }: { searchParams: { stage: st
 
         <RoadMap data={formatKnockoutData()} />
 
+       { data[1]?.documents[0]?.type?.toLowerCase() == 'knockout' && 
+       (<div className="z-20 p-2 md:p-3 rounded-r-md bg-gray-50 border-l-4 border-red-700 shadow">
+          <h1 className="w-full flex items-center justify-between font-bold text-[0.65rem] md:text-sm tracking-widest">
+            <span className="uppercase">{ data[1]?.documents[0]?.name }</span>
+            <span className="py-0.5 px-2 rounded-sm bg-blue-950 text-xs text-white uppercase">{ data[0]?.total } GAMES</span>
+          </h1>
+        </div>
+       )}
+
         <div className="z-10 w-full space-y-2">
           { data[0]?.documents?.filter((r:any) => r.kickstatus != 'live')?.map((row:any,index: number) => (
             <FixturePill key={row.$id} index={index} row={row} />
